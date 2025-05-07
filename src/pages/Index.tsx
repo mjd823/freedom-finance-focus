@@ -1,13 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { MainLayout } from '@/layouts/MainLayout';
+import { SEOHead } from '@/components/SEOHead';
+import { HeroSection } from '@/components/home/HeroSection';
+import { CategorySection } from '@/components/home/CategorySection';
+import { FeaturedArticles } from '@/components/home/FeaturedArticles';
+import { NewsletterSection } from '@/components/home/NewsletterSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <MainLayout>
+      <SEOHead 
+        title="GV Freedom - Expert Personal Finance Tips for Financial Independence"
+        description="Learn about credit, investing, loans, budgeting and more to achieve financial freedom with expert advice from GV Freedom."
+        keywords="financial freedom, personal finance, credit score, investing, budgeting, loans, wealth building"
+      />
+      
+      <HeroSection />
+      <CategorySection />
+      <FeaturedArticles />
+      <NewsletterSection />
+    </MainLayout>
   );
 };
 
