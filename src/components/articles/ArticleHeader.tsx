@@ -83,6 +83,9 @@ export function ArticleHeader({
             src={featuredImage} 
             alt={title}
             className="w-full h-auto rounded-lg shadow-md"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/placeholder.svg";
+            }}
           />
         </div>
       )}

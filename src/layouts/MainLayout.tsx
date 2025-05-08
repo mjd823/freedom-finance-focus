@@ -19,7 +19,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         <Footer />
         
         {/* Global styles for CTA buttons */}
-        <style jsx global>{`
+        <style>{`
           .container-content {
             width: 100%;
             max-width: 1200px;

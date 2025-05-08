@@ -4,9 +4,10 @@ import { MainLayout } from '@/layouts/MainLayout';
 import { SEOHead } from '@/components/SEOHead';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 
-// Same featured article data as in FeaturedArticles component
+// Enhanced article data with better images
 const articles = [
   {
     id: 1,
@@ -14,7 +15,7 @@ const articles = [
     excerpt: "Discover the top free apps to monitor your credit score, with detailed reviews of Credit Karma, Credit Sesame, and more.",
     category: "Credit",
     path: "/credit/best-free-credit-score-apps",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 2,
@@ -22,7 +23,7 @@ const articles = [
     excerpt: "Learn how to start investing with user-friendly apps like Acorns, Robinhood, and more, even with little experience.",
     category: "Investing",
     path: "/investing/beginners-guide-to-investing-apps",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 3,
@@ -30,7 +31,7 @@ const articles = [
     excerpt: "Follow these proven steps to boost your credit score quickly and effectively, from immediate actions to long-term strategies.",
     category: "Credit",
     path: "/credit/how-to-improve-your-credit-score-fast",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 4,
@@ -38,7 +39,7 @@ const articles = [
     excerpt: "Everything you need to know about applying for personal loans online, with a focus on SoFi and other top lenders.",
     category: "Loans",
     path: "/loans/how-to-get-personal-loan-online",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1434626881859-194d67b2b86f?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 5,
@@ -46,7 +47,7 @@ const articles = [
     excerpt: "The best budgeting solutions for families looking to manage their finances, save more, and achieve their financial goals.",
     category: "Budgeting",
     path: "/budgeting/top-budgeting-tools-apps-families",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 6,
@@ -54,7 +55,7 @@ const articles = [
     excerpt: "A comprehensive review of SoFi's loan offerings, including personal loans, student loan refinancing, and more.",
     category: "Loans",
     path: "/loans/sofi-loans-review",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 7,
@@ -62,7 +63,7 @@ const articles = [
     excerpt: "Strategies and platforms to begin your investment journey, even with minimal capital.",
     category: "Investing",
     path: "/investing/start-investing-little-money",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 8,
@@ -70,7 +71,7 @@ const articles = [
     excerpt: "A detailed comparison of these popular credit monitoring services to help you choose the right one.",
     category: "Credit",
     path: "/credit/credit-karma-vs-credit-sesame",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 9,
@@ -78,7 +79,7 @@ const articles = [
     excerpt: "Explore various funding sources for your business, including Advance Funds Network and alternatives.",
     category: "Business Funding",
     path: "/business-funding/options-for-entrepreneurs",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: 10,
@@ -86,7 +87,7 @@ const articles = [
     excerpt: "Practical advice on creating lasting wealth that can benefit future generations of your family.",
     category: "Wealth Building",
     path: "/wealth-building/build-generational-wealth",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?auto=format&fit=crop&w=800&q=80"
   },
 ];
 
@@ -117,6 +118,9 @@ const Blog = () => {
                       src={article.imageUrl} 
                       alt={article.title} 
                       className="w-full h-48 object-cover rounded-t-lg"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/placeholder.svg";
+                      }}
                     />
                     <div className="absolute top-3 left-3">
                       <Badge className="bg-finance-green hover:bg-finance-green">{article.category}</Badge>
@@ -132,18 +136,41 @@ const Blog = () => {
                   <p className="text-gray-600">{article.excerpt}</p>
                 </CardContent>
                 <CardFooter>
-                  <Link 
-                    to={article.path} 
-                    className="text-finance-blue hover:text-finance-lightBlue font-medium transition-colors inline-flex items-center"
-                  >
-                    Read More
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                  <Button variant="link" className="text-finance-blue hover:text-finance-lightBlue p-0" asChild>
+                    <Link to={article.path} className="inline-flex items-center">
+                      Read More
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </Button>
                 </CardFooter>
               </Card>
             ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <h2 className="text-3xl font-serif font-bold mb-6">Subscribe to Our Newsletter</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+              Get the latest financial tips, tools and resources delivered straight to your inbox.
+            </p>
+            
+            <div className="max-w-md mx-auto">
+              <form className="flex flex-col md:flex-row gap-4">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-grow px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-finance-green"
+                  required
+                />
+                <Button className="bg-finance-green hover:bg-finance-darkGreen text-white font-medium">
+                  Subscribe
+                </Button>
+              </form>
+              <p className="text-sm text-gray-500 mt-2">
+                We respect your privacy. Unsubscribe at any time.
+              </p>
+            </div>
           </div>
         </div>
       </section>
